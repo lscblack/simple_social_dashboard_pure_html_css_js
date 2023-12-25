@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-100%);
+            }
+            20% {
+                transform: translateX(0);
+            }
+        }
+        @keyframes slide-in2 {
+            0% {
+                transform: translateX(-100%);
+            }
+            20% {
+                transform: translateX(0);
+            }
+        }
+
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        
+        :root{
+            --white:white;
+            --textwhite:white;
+            --grey-white:rgb(255, 255, 255);
+            --lightgrey:lightgrey;
+            --trcol:rgb(236, 235, 235);
+            --boxs:rgba(0, 0, 0, 0.1);
+            --trhover:rgb(225, 225, 225);
+        }
+        body{
+            overflow: hidden;
+        }
+        .container{
+            border: 0px solid var(--lightgrey);
+            width: 100%;
+            margin: auto;
+            flex-wrap: nowrap;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .side-bar{
+            flex: 1;
+            padding: 6px;
+            overflow: hidden;
+            min-width: 270px;
+            max-width: 270px;
+            box-sizing: border-box;
+            position: relative;
+            background: var(--grey-white);
+        }
+        .body{
+            background: var(--grey-white);
+            flex: 4;
+            padding: 0px;
+            box-sizing: border-box;
+            padding-top: 7px; 
+            position: relative;
+            height: 100vh;
+        }
+        .img{
+            overflow: hidden;
+            height: 45px;
+            width: 45px;
+            border-radius: 100px;
+        }
+        .img img{
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        .profile{
+            width: 100%;
+            display: flex;
+            border: 0px solid;
+            border-radius: 5px;
+            gap: 10px;
+            padding: 7px;
+        }
+        .profile .img{
+            min-width: 45px;
+            min-height: 45px;
+        }
+        .profile text{
+            padding: 5px;
+            color: rgb(67, 71, 117);
+        }
+        .profile text span:nth-child(1){
+            text-transform: capitalize;
+            font-size: 16px;
+            display: block;
+            font-weight: bold;
+        }
+        .profile text span:nth-child(2){
+            font-size: 12px;
+        }
+        .btn{
+            padding: 8px;
+            cursor: pointer;
+            border: 0px;
+            border-radius: 5px;
+            color: var(--white);
+            
+        }
+        .red{
+            background-color: #d64444;
+        }
+        .red:hover{
+            box-shadow: 0 0 5px #db3737;
+            background:rgb(236, 59, 59);
+        }
+        .red:focus{
+            box-shadow: 0 0 5px #db3737;
+            background:rgb(236, 59, 59);
+        }
+        .blue{
+            background:#4477d6;rgb(56, 97, 233);
+        }
+        .blue:hover{
+            background:#3869c3;;
+            box-shadow: 0 0 5px rgb(33, 79, 231);
+        }
+        .blue:focus{
+            background:#3c6dc8;;
+            box-shadow: 0 0 5px rgb(33, 79, 231);
+        }
+        .green{
+            background:rgb(52, 145, 57);
+        }
+        .green:hover{
+            background:rgb(75, 155, 79);
+            box-shadow: 0 0 5px rgb(37, 100, 40);
+        }
+        .green:focus{
+            background:rgb(75, 155, 79);
+            box-shadow: 0 0 5px rgb(37, 100, 40);
+        }
+        .menu {
+            background: var(--white);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 0px 10px 2px var(--boxs);
+            margin: 10px auto;
+        }
+        .menu .link{
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: rgb(67, 71, 117);
+            margin: 4px auto;
+            background: var(--white);
+            font-size: 16px;
+            border-radius: 5px;
+            var(--white)-space: nowrap;
+        }
+        .menu .link.active{
+            background:#4477d6;;
+            color: var(--white);
+        }
+        .menu .link:hover{
+            width: 100%;
+            color: rgb(67, 71, 117);
+            background: var(--trcol);
+
+        }
+        .title-3{
+            padding: 6px;
+            padding-left: 0px;
+            text-transform: capitalize;
+            color: rgb(67, 71, 117);
+            border-bottom: 1px solid var(--lightgrey);
+        }
+        .head{
+            box-shadow: 2px 0px 10px 2px var(--boxs);
+            padding: 12px;
+            background-color: var(--white);
+            border-radius: 5px;
+        }
+
+        .footer{
+            position: absolute;
+            width: 94.9%;
+            box-sizing: border-box;
+            bottom: 0;
+            margin-top:auto;
+        }
+        .hide{
+            display: none;
+        }
+        .absolute{
+            text-align: center;
+        }
+        .btn-sm{
+            padding: 5px;
+            font-size: 11px;
+        }
+        .top-float{
+            float: inline-end;
+        }
+        /* Start Of Body Items Styles*/
+        .menu2{
+            background: var(--white);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 4;
+            width: 180px;
+            position: absolute;
+            display: none;
+            right: 20px;
+            top: 70px;
+            box-shadow: 2px 0px 10px 2px var(--boxs);
+        }
+        .menu2 .link{
+            display: block;
+            cursor: pointer;
+            padding: 8px;
+            text-decoration: none;
+            color: rgb(67, 71, 117);
+            margin: 4px auto;
+            background: var(--white);
+            font-size: 16px;
+            border-radius: 5px;
+            var(--white)-space: nowrap;
+        }
+        .menu2 .link.active{
+            background:#4477d6;;
+            color: var(--white);
+        }
+        .menu2 .link:hover{
+            width: 100%;
+            color: rgb(67, 71, 117);
+            background: var(--trcol);
+
+        }
+        nav{
+            width: 100%;
+            padding: 6px;
+            padding-left: 20px;
+            display: flex;
+            justify-content: space-between;
+            color: #4477d6;
+            background-color: var(--white);
+            align-items: center;
+            font-size: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 8;
+        }
+        .cions{
+            font-size: 25px;
+            cursor: pointer;
+            display: block;
+        }
+        .cions:nth-child(1){
+            display: none;
+        }
+        .all-items{
+            height: 100%;
+            overflow: auto;
+            border-radius: 10px 0px 0px 10px;
+            background: var(--white);
+            box-shadow: 2px 0px 10px 2px var(--boxs);
+            width: 100%;
+            
+            
+        }
+        .t-top{
+            border-top: 1px solid var(--lightgrey);
+            border-bottom: 0px solid var(--lightgrey);
+        }
+        .big-img{
+            padding: 7px;
+            width: 100%;
+            position: relative;
+            height: 260px;
+            border-radius: 5px;
+        }
+        .big-title-img{
+            z-index: 2;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.2);
+            border: 0px;
+            color: var(--textwhite);
+            width: 100%;
+            padding-top:12%;
+            height: 100%;
+            position: absolute;
+        }
+        .d-flex{
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px;
+            margin: auto;
+            align-items: center;
+        }
+        .d-flex .box{
+            background: var(--white);
+            padding: 0px;
+            border-radius: 5px;
+            min-width: 250px;
+            width: auto;
+            margin: auto;
+            box-shadow: 2px 0px 10px 2px var(--boxs);
+        }
+        .d-flex .box .big-img{
+            height: 90px;
+            padding: 0px;
+            cursor: pointer;
+        }
+        .d-flex .box .big-img:hover img {
+            transform: scale(1.1);
+        }
+
+        .data{
+            z-index: 2;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.2);
+            border: 0px;
+            color: var(--textwhite);
+            width: 100%;
+            padding:12%;
+            height: 100%;
+            position: absolute; 
+        }
+        .data .text{
+            font-weight: bold;
+        }
+        .f-30{
+            font-size: 40px;
+        }
+        
+        .p-10{
+            padding: 10px;
+            border: 0px;
+        }
+        .tables{
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            flex-shrink: calc(300px);
+            justify-content: space-between;
+            padding: 10px;
+            margin: auto;
+        }
+        .one, .two {
+            flex: 1 0 calc(50% - 15px); /* Adjust width for two columns with gap */
+            background: var(--white);
+            box-shadow: 2px 0px 10px 2px var(--boxs);
+            padding: 6px;
+            border-radius: 10px;
+            margin-bottom: 10px; /* Create gap between rows */
+        }
+
+        table{
+            color: rgb(67, 71, 117);
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+        table tbody tr{
+            border-bottom: 0px solid var(--lightgrey);
+        }
+        table tbody tr:nth-last-of-type(even){
+            color: rgb(67, 71, 117);
+            background: var(--trcol);
+        }
+        table tbody tr:hover{
+            cursor: pointer;
+            color: rgb(67, 71, 117);
+            background: var(--trhover);
+        }
+        table tbody tr td{
+            padding: 10px;
+        }
+        table thead tr th{
+            padding: 12px;
+        }
+        .bottom-footer{
+            color: rgb(67, 71, 117);
+            padding: 14px;
+
+        }
+        .slide,.slide2,.slide3{
+            position: relative;
+            display: none;
+        }
+        .slide:nth-child(1){
+            display: block;
+
+        } 
+        .slide2:nth-child(1),.slide3:nth-child(1){
+
+            display: flex;
+        }
+        .img.bigger{
+            width: 150px;
+            border-radius: 3px;
+            height: 207px;
+            min-width: 150px;
+            min-height: 207px;
+            
+        }
+        .img.round-img{
+            border-radius: 100px;
+            max-width: 130px;
+            max-height: 130px;
+            min-width: 130px;
+            min-height: 130px;
+        }
+        .center{
+            margin: auto;
+        }
+        .big-letters{
+            color: rgb(67, 71, 117);
+        }
+        .big-letters span{
+            margin-top: 10px;
+            font-size: 12px;
+            display: block;
+        }
+        .mt-10{
+            margin-top: 10px;
+        }
+        /* Side bar & body Media Css*/
+        @media screen and (max-width:970px) {
+            table{
+                font-size: 12px;
+            }
+        }
+        @media screen and (max-width:770px) {
+            table{
+                font-size: 13px;
+            }
+            .one, .two {
+              flex: 1 0 calc(100% - 15px); /* Full width on smaller screens */
+              margin-bottom: 10px; /* Retain gap between rows */
+            }
+            .cions:nth-child(1){
+                display: block;
+            }
+
+            .side-bar{
+                min-width: 70px;
+                max-width: 70px;
+                padding: 6px;
+                border: 0px;
+                box-shadow: 2px 0px 10px 2px var(--boxs);
+            }
+            .menu,.head,.profile{
+
+                box-shadow: none;
+            }
+            .menu .link .small{
+                font-size: 20px;
+                margin: auto;
+            }
+
+            .big{
+                display: none;
+            }
+            .head{
+                padding: 5px;
+            }
+            .profile{
+                padding: 0px;
+            }
+  
+            .tr-small{
+                margin-top: 10px;
+            }
+            .top-float.tr-small{
+                float: none;
+                width: 100%;
+            }
+        }
+        @media screen and (max-width:620px) {
+            .d-flex .box{
+                min-width: 48%;
+                max-width: 48%;
+            }
+            .f-30{
+                font-size: 30px;
+            }
+            .data .text{
+                font-size: 14px;
+            }
+
+            
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="side-bar">
+            <div class="head">
+                <div class="profile">
+                    <div class="img">
+                        <img src="https://yt3.googleusercontent.com/ytc/AIf8zZS6XDo-M7dlTyolU_yBAp-cmqn0EfZ8AGkKa9yItg=s900-c-k-c0x00ffffff-no-rj">
+                    </div>
+                    <text class="big">
+                        <span>black Devil </span>
+                        <span>Chrissbind@gmail.com</span>
+                    </text>
+                </div>
+                <button onclick="darkmode(false)" class="btn blue btn-sm tr-small"><span class="small"><i class="fa fa-sun "></i> </span><span class="big">light</span></button>
+                <button onclick="darkmode(true)" class="btn red btn-sm tr-small"><span class="small"><i class="fa fa-moon "></i> </span><span class="big">Dark</span></button>
+                <button id="short_menu_btn" class="btn green btn-sm tr-small" onclick="short_menu('show')"><span class="small"><i class="fa fa-bars "></i> </span><span class="big">More</span></button>
+                <button  class="btn blue btn-sm tr-small"><span class="small"><i class="fa fa-sign-out "></i> </span><span class="big">profile</span></button>
+                <p>&nbsp;</p>
+                <div class="hide absolute" id="short_menu">
+                    <h3 class="title-3 "><span class="big">Actions</span> <button class="btn red btn-sm top-float tr-small" onclick="short_menu('hide')"><i class="fa fa-times "></i> <span class="big">Close</span></button></h3>
+                    <p>&nbsp;</p>
+                    <button class="btn  blue tr-small"><i class="fa fa-user"></i> <span class="big">Account</span></button>
+                    <button class="btn  green tr-small"><i class="fa fa-camera"></i> <span class="big">Picture</span></button>
+                </div>
+            </div>
+            <div class="menu">
+                <h3 class="title-3 big">Menu</h3>
+                <a href="#" class="link active"><span class="small"><i class="fa fa-home"></i></span> <span class="big">Home</span></a>
+                <a href="#" class="link"><span class="small"><i class="fa fa-coins"></i></span> <span class="big">Profit</span></a>
+                <a href="#" class="link"><span class="small"><i class="fa fa-calendar"></i></span> <span class="big">schedule</span></a>
+                <a href="#" class="link"><span class="small"><i class="fa fa-globe"></i></span> <span class="big">Languages</span></a>
+                <a href="#" class="link"><span class="small"><i class="fa fa-comments"></i></span> <span class="big">Messages</span></a>
+                <a href="#" class="link"><span class="small"><i class="fa fa-users"></i></span> <span class="big">Groups</span></a>
+            </div>
+            <div class="footer menu">
+                <h3 class="title-3 big">Management</h3>
+                <a href="#" class="link"><span class="small"><i class="fa fa-bell"></i></span> <span class="big">Notifications</span></a>
+                <a href="#" class="link"><span class="small"><i class="fa fa-gear"></i></span> <span class="big">Settings</span></a>
+                <a href="#" class="link"><span class="small"><i class="fa fa-sign-out"></i></span> <span class="big">Logout</span></a>
+            </div>
+        </div>
+        <div class="body">
+            <div class="menu2">
+                <h3 class="title-3 ">profile <button onclick="show_pro('hide')" class="btn btn-sm red top-float"><i class="fa fa-times"></i> Close</button></h3>
+                <a class="link"><i class="fa fa-gear"></i> Setting</a>
+                <a class="link"><i class="fa fa-user-circle"></i> profile</a>
+                <a class="link"><i class="fa fa-sign-out"></i> Logout</a>
+            </div>
+            <div class="all-items">
+                <nav>
+                    <i class="fa fa-bars cions hide small" onclick="show_menu('show')" id="show"></i>
+                    <i  class="fa fa-times cions big" onclick="show_menu('hide')" id="hide"></i>
+                    <div class="left">
+                        <div class="img" onclick="show_pro('show')">
+                            <img src="https://yt3.googleusercontent.com/ytc/AIf8zZS6XDo-M7dlTyolU_yBAp-cmqn0EfZ8AGkKa9yItg=s900-c-k-c0x00ffffff-no-rj"/>
+                        </div>
+                    </div>
+                </nav>
+                <div>
+                    <div class="img big-img slide">
+                        <img src="https://cloudcfo.ph/wp-content/uploads/2022/06/CloudCfo-Financial-Ratios.png"/>
+                        <h1 class="title-3 big-title-img" align="center">Hi, welcome Black Devil </h1>
+                    </div>
+                    <div class="img big-img slide">
+                        <img src="https://youth.europa.eu/d8/sites/default/files/styles/1200x600/public/2022-01/Jint-47.jpg?itok=zIn_8GFM"/>
+                        <h1 class="title-3 big-title-img" align="center">Love is not weakness</h1>
+                    </div>
+                    <div class="img big-img slide">
+                        <img src="https://www.ecu.edu.au/__data/assets/image/0008/986309/A-Carnarvon-banner.jpg"/>
+                        <h1 class="title-3 big-title-img" align="center">Working is the key to hard things</h1>
+                    </div>
+                    <div class="d-flex">
+                        <div class="box">
+                            <div class="img big-img">
+                                <img src="https://wallpapers.com/images/hd/finance-background-yrdtwpxuwwj8bvbp.jpg"/>
+                                <div class="data">
+                                    <i class="fa fa-coins f-30"></i>
+                                    <span class="text" align="center">$ 300,400</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="img big-img">
+                                <img src="https://img.freepik.com/free-vector/gradient-cryptocurrency-concept_23-2149215736.jpg?size=626&ext=jpg&ga=GA1.1.1546980028.1703203200&semt=ais"/>
+                                <div class="data">
+                                    <i class="fas fa-chart-bar f-30"></i>
+                                    <span class="text" align="center">100 Million</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="img big-img">
+                                <img src="https://i.ytimg.com/vi/01_9TBthWIc/maxresdefault.jpg"/>
+                                <div class="data">
+                                    <i class="fas fa-users f-30"></i>
+                                    <span class="text" align="center">100,302 Vistors</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="img big-img">
+                                <img src="https://img.freepik.com/premium-photo/stack-black-money-coin-banking-currency-business-finance-cash-dollar-treasure-earnings-financial-profit-market-investment-stock-exchange-dark-3d-background-with-success-economy-income_79161-2032.jpg"/>
+                                <div class="data">
+                                    <i class="fas fa-bank f-30"></i>
+                                    <span class="text" align="center">$ 100,302 Bank</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tables">
+                        <div class="one">
+                            <div class="profile slide2">
+                                <div class="img round-img center">
+                                    <img src=https://afrogistmedia.com/wp-content/uploads/2021/06/Which-10-African-countries-have-the-most-beautiful-girls.jpg" alt="">
+                                </div>
+                                <text>
+                                    <div class="big-letters">
+                                        <span><b>Summary Chriss Wifi</b></span>
+                                        <span>
+                                            Chriss Wifi you love the depth, elegance,  igniting your imagination and evoking
+                                             emotions that transcend boundaries.
+                                        </span>
+                                        <span><b>About:</b></span>
+                                        <span>
+                                            Wifi your love the depth, elegance, and mystery of black. Its timeless and versatile nature in various fields like 
+                                            fashion and art captivates you, igniting your imagination and evoking emotions that transcend boundaries.
+                                        </span>
+
+                                    </div>
+                                    <div align="center" class="mt-10 ">
+                                        <button  class="btn blue btn-sm tr-small inline-block"><loue class="small"><i class="fa fa-eye "></i> </loue><loue class="big">View</loue></button>
+                                        <button  class="btn green btn-sm tr-small inline-block"><loue class="small"><i class="fa fa-camera "></i> </loue><loue class="big">Change</loue></button>
+                                        <button  class="btn red btn-sm tr-small inline-block"><loue class="small"><i class="fa fa-thumbs-down "></i> </loue><loue class="big">Dislike</loue></button>
+                                        <button  class="btn blue btn-sm tr-small inline-block"><loue class="small"><i class="fa fa-thumbs-up"></i> </loue><loue class="big">Like</loue></button>
+                                    </div>
+                                </text>
+                            </div>
+                            <div class="profile slide2">
+                                <div class="img round-img center">
+                                    <img src="https://st.depositphotos.com/2947157/3999/i/450/depositphotos_39998967-stock-photo-young-and-beautiful-asian-woman.jpg" alt="">
+                                </div>
+                                <text>
+                                    <div class="big-letters">
+                                        <span><b>About Black Devil</b></span>
+                                        <span>
+                                            you love the depth, elegance,  igniting your imagination and evoking
+                                             emotions that transcend boundaries.
+                                        </span>
+                                        <span><b>Summary:</b></span>
+                                        <span>
+                                            you love the depth, elegance, and mystery of black. Its timeless and versatile nature in various fields like 
+                                            fashion and art captivates you, igniting your imagination and evoking emotions that transcend boundaries.
+                                        </span>
+
+                                    </div>
+                                    <div align="center" class="mt-10 ">
+                                        <button  class="btn blue btn-sm tr-small inline-block"><loue class="small"><i class="fa fa-eye "></i> </loue><loue class="big">View</loue></button>
+                                        <button  class="btn green btn-sm tr-small inline-block"><loue class="small"><i class="fa fa-camera "></i> </loue><loue class="big">Change</loue></button>
+                                        <button  class="btn red btn-sm tr-small inline-block"><loue class="small"><i class="fa fa-thumbs-down "></i> </loue><loue class="big">Dislike</loue></button>
+                                        <button  class="btn blue btn-sm tr-small inline-block"><loue class="small"><i class="fa fa-thumbs-up"></i> </loue><loue class="big">Like</loue></button>
+                                    </div>
+                                </text>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <div class="profile slide3">
+                                <div class="img bigger">
+                                    <img src="https://content.internetvideoarchive.com/content/hdphotos/14004/014004/014004_1223x688_637986893091333044.jpg">
+                                </div>
+                                <text>
+                                    <span> <i class="fa fa-user-circle icons"></i> Jenn The Way </span>
+                                    <span> <i class="fa fa-envelope icons"></i> bidenblack@gmail.com</span>
+                                    <div class="big-letters">
+                                        <span></span>
+                                       <span> <i class="fa fa-phone"></i> + 250 099 222 344</span>
+                                       <span> <i class="fa fa-location"></i> Rwanda, Kigali</span>
+                                       <span><b>Summary: </b></span>
+                                       <span class="f-12">Jenny, a hue that captures depth and mystery, enchants me. Its profound elegance resonates with my soul, creating an aura of enigmatic beauty. </span>
+                                    </div>
+                                    <div align="center" class="mt-10">
+                                        <button  class="btn blue btn-sm tr-small"><loue class="small"><i class="fa fa-arrow-right "></i> </loue><loue class="big"> Profile</loue></button>
+                                        <button id="short_menu_btn" class="btn green btn-sm tr-small"><loue class="small"><i class="fa fa-camera "></i> </loue><loue class="big">Change Photo</loue></button>
+                                        <button  class="btn red btn-sm tr-small"><loue class="small"><i class="fa fa-thumbs-up"></i> </loue><loue class="big">Like </loue></button>
+                                        <button  class="btn blue btn-sm tr-small"><loue class="small"><i class="fa fa-thumbs-down "></i> </loue><loue class="big">Dislike </loue></button>
+                                    </div>
+                                </text>
+                            </div>
+                            <div class="profile slide3">
+                                <div class="img bigger">
+                                    <img src="https://asianlite.ae/wp-content/uploads/2023/09/06_3.jpeg">
+                                </div>
+                                <text>
+                                    <span> <i class="fa fa-user-circle icons"></i> black Devil </span>
+                                    <span> <i class="fa fa-envelope icons"></i> Chrissbind@gmail.com</span>
+                                    <div class="big-letters">
+                                        <span></span>
+                                       <span> <i class="fa fa-phone"></i> + 250 788 222 344</span>
+                                       <span> <i class="fa fa-location"></i> Rwanda Kigali</span>
+                                       <span><b>Summary: </b></span>
+                                       <span class="f-12">Black, a hue that captures depth and mystery, enchants me. Its profound elegance resonates with my soul, creating an aura of enigmatic beauty. </span>
+                                    </div>
+                                    <div align="center" class="mt-10">
+                                        <button  class="btn blue btn-sm tr-small"><loue class="small"><i class="fa fa-arrow-right "></i> </loue><loue class="big"> Profile</loue></button>
+                                        <button id="short_menu_btn" class="btn green btn-sm tr-small"><loue class="small"><i class="fa fa-camera "></i> </loue><loue class="big">Change Photo</loue></button>
+                                        <button  class="btn red btn-sm tr-small"><loue class="small"><i class="fa fa-thumbs-up"></i> </loue><loue class="big">Like </loue></button>
+                                        <button  class="btn blue btn-sm tr-small"><loue class="small"><i class="fa fa-thumbs-down "></i> </loue><loue class="big">Dislike </loue></button>
+                                    </div>
+                                </text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tables">
+                        <div class="one">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="6"><h3 class="title-3" align="center">Avaliable Shops in Kigali</h3></th>
+                                    </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>User Name</th>
+                                        <th>Email</th>
+                                        <th colspan="2">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Black Devil</td>
+                                        <td>black@gmail.com</td>
+                                        <td><button class="btn btn-sm red"><i class="fa fa-trash"></i> Delete</button></td>
+                                        <td><button class="btn btn-sm green"><i class="fa fa-edit"></i> Update</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Betty</td>
+                                        <td>beety@gmail.com</td>
+                                        <td><button class="btn btn-sm red"><i class="fa fa-trash"></i> Delete</button></td>
+                                        <td><button class="btn btn-sm green"><i class="fa fa-edit"></i> Update</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Black Devil</td>
+                                        <td>black@gmail.com</td>
+                                        <td><button class="btn btn-sm red"><i class="fa fa-trash"></i> Delete</button></td>
+                                        <td><button class="btn btn-sm green"><i class="fa fa-edit"></i> Update</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Betty</td>
+                                        <td>beety@gmail.com</td>
+                                        <td><button class="btn btn-sm red"><i class="fa fa-trash"></i> Delete</button></td>
+                                        <td><button class="btn btn-sm green"><i class="fa fa-edit"></i> Update</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Black Devil</td>
+                                        <td>black@gmail.com</td>
+                                        <td><button class="btn btn-sm red"><i class="fa fa-trash"></i> Delete</button></td>
+                                        <td><button class="btn btn-sm green"><i class="fa fa-edit"></i> Update</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Betty</td>
+                                        <td>beety@gmail.com</td>
+                                        <td><button class="btn btn-sm red"><i class="fa fa-trash"></i> Delete</button></td>
+                                        <td><button class="btn btn-sm green"><i class="fa fa-edit"></i> Update</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="two">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="4"><h3 class="title-3" align="center">Avaliable Users In Kigali</h3></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Profile</th>
+                                        <th>User Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="img">
+                                                <img src="https://content.internetvideoarchive.com/content/hdphotos/14004/014004/014004_1223x688_637986893091333044.jpg" alt="">
+                                            </div>
+                                        </td>
+                                        <td>Black Devil</td>
+                                        <td>black@gmail.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="img">
+                                                <img src="https://m.media-amazon.com/images/M/MV5BZTQyZDllNTAtZmEwYy00ZDk3LThhMWUtZmMzZDI1NWY2MmQ1XkEyXkFqcGdeQXVyMTY2NDE3ODAz._V1_.jpg" alt="">
+                                            </div>
+                                        </td>
+                                        <td>Betty</td>
+                                        <td>beety@gmail.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="img">
+                                                <img src="https://m.media-amazon.com/images/M/MV5BMWVjOTAzMmItOGM1NS00MTdkLWE0YzAtZDE5ZDJlNDcxZjk5XkEyXkFqcGdeQXVyNDg3NTIyODU@._V1_.jpg" alt="">
+                                            </div>
+                                        </td>
+                                        <td>Black Devil</td>
+                                        <td>black@gmail.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="img">
+                                                <img src="https://www.shawlinepublishing.com.au/content/product/author/thumb/The_Girl_Who_Can_Fly-1186-372.jpeg" alt="">
+                                            </div>
+                                        </td>
+                                        <td>Betty</td>
+                                        <td>beety@gmail.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-footer" align="center">
+                    &copy; 2023 all rights reserved by lscblack
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // change mode
+        function darkmode(doWhat){
+            if(doWhat){
+                document.documentElement.style.setProperty('--white','rgb(8, 3, 18)');
+                document.documentElement.style.setProperty('--grey-white','rgb(2, 1, 7)');
+                document.documentElement.style.setProperty('--lightgrey','rgb(4, 5, 13)');
+                document.documentElement.style.setProperty('--trcol','rgb(3, 2, 9)');
+                document.documentElement.style.setProperty('--trhover','rgb(3, 4, 21)');
+                document.documentElement.style.setProperty('--boxs','rgba(93, 43, 221, 0.1)');
+            }else{
+                document.documentElement.style.setProperty('--white','white');
+                document.documentElement.style.setProperty('--grey-white','rgb(255, 255, 255)');
+                document.documentElement.style.setProperty('--lightgrey','lightgrey');
+                document.documentElement.style.setProperty('--trcol','rgb(236, 235, 235)');
+                document.documentElement.style.setProperty('--boxs','rgba(0, 0, 0, 0.1)');
+                document.documentElement.style.setProperty('--trhover','rgb(225, 225, 225)');
+            }
+        }
+        
+
+        //slides
+        var show = 0
+        var show2 = 0
+        var show3 = 0
+        var items = document.querySelectorAll('.slide')
+        var items2 = document.querySelectorAll('.slide2')
+        var items3 = document.querySelectorAll('.slide3')
+        const slide =() =>{
+            if(show < items.length){
+                items[show].style.animation="slide-in2 1s ease-out"
+                items.forEach(item => item.style.display="none")
+                items[show].style.display="block"
+                show ++
+            }else{
+                show = 0
+            } 
+        }
+        const slide2 =() =>{
+            if(show2 < items2.length){
+                items2[show2].style.animation="slide-in 1s ease-in"
+                items2.forEach(item => item.style.display="none")
+                items2[show2].style.display="flex"
+                show2 ++
+            }else{
+                show2 = 0
+            } 
+        }
+        const slide3 =() =>{
+            if(show3 < items3.length){
+                items3[show3].style.animation="slide-in 1s ease-in"
+                items3.forEach(item => item.style.display="none")
+                items3[show3].style.display="flex"
+                show3 ++
+            }else{
+                show3 = 0
+            } 
+        }
+        setInterval(()=>{
+            slide()
+            slide2()
+            slide3()
+        },2000)
+        // menu profiel
+        const show_pro = (doWhat) =>{
+            if(doWhat == "show"){
+                document.querySelector(".menu2").style.display="block"
+                document.querySelector(".menu2").style.animation="slide-in 1s ease-out"
+            }else{
+                document.querySelector(".menu2").style.animation="slide-in2 1s ease-out"
+                document.querySelector(".menu2").style.display="none"
+
+            }
+        }
+        //menu one
+        function short_menu(doWhat){
+            if(doWhat == "show"){
+                document.getElementById("short_menu").style.display="block"
+                document.getElementById("short_menu").style.animation="slide-in 1s ease-out"
+                document.getElementById("short_menu_btn").style.display="none"
+            }else{
+                document.getElementById("short_menu").style.display="none"
+                document.getElementById("short_menu_btn").style.display="inline-block"   
+            }
+        }
+        //small screen
+        function show_menu(doWhat){
+            if(doWhat == "show"){
+                document.getElementById("show").style.display="none"
+                document.getElementById("hide").style.display="block"
+                var all = document.querySelectorAll('.big')
+                all.forEach(element =>  element.style.display="inline-block");
+                document.querySelector('.side-bar').style.minWidth="270px"
+                document.querySelector('.side-bar').style.animation="slide-in 1s ease-out"
+                document.querySelector('.side-bar').style.maxWidth="270px"
+                document.querySelector('.profile').style.padding="7px"
+                document.querySelector('.head').style.padding="12px"
+                document.querySelector('.tr-small').style.marginTop="0px"
+                document.querySelector('.top-float.tr-small').style.float = "right";
+                document.querySelector('.top-float.tr-small').style.width = "fit-content";
+                
+                document.querySelector('.head').style.boxShadow = "2px 0px 10px 2px var(--boxs)";
+                var all3 = document.querySelectorAll('.menu');
+                all3.forEach(item => item.style.boxShadow = "2px 0px 10px 2px var(--boxs)")
+        
+                var all2 = document.querySelectorAll('.menu .link')
+                all2.forEach(items => items.style.fontSize="16px")
+                all2.forEach(items => items.style.margin="0px auto")
+
+                
+            }else{
+                document.querySelector('.side-bar').style.animation="slide-in 1s ease-out"
+                var all2 = document.querySelectorAll('.menu .link')
+                all2.forEach(items => items.style.fontSize="20px")
+                var all3 = document.querySelectorAll('.menu');
+                all3.forEach(item => item.style.boxShadow = "none")
+                document.querySelector('.head').style.boxShadow = "none";
+
+                document.querySelector('.top-float.tr-small').style.float = "none";
+                document.querySelector('.top-float.tr-small').style.width = "100%";
+                
+                var all1 = document.querySelectorAll('.tr-small')
+                all1.forEach(items => items.style.marginTop="10px")
+
+                document.querySelector('.profile').style.padding="0px"
+                document.querySelector('.head').style.padding="5px"
+                document.getElementById("show").style.display="block"
+                document.getElementById("hide").style.display="none"   
+                var all = document.querySelectorAll('.big')
+                all.forEach(element =>  element.style.display="none");
+                document.querySelector('.side-bar').style.minWidth="70px"
+                document.querySelector('.side-bar').style.maxWidth="70px"
+            }
+        }
+    </script>
+</body>
+</html>
