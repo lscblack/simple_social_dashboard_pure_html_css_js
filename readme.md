@@ -2,14 +2,22 @@
 
 This single-page dashboard is a lightweight project showcasing a social dashboard built purely with HTML, CSS, and JavaScript. It includes features like a profile section, menus, images, and tables, providing a glimpse into a social platform's functionality.
 ## Screen Shots
-[![img1](images/img1.png)]
-[![img1](images/img3.png)]
-[![img1](images/img4.png)]
-[![img1](images/img5.png)]
-[![img1](images/img6.png)]
-[![img1](images/img7.png)]
-[![img1](images/img8.png)]
-[![img1](images/img9.png)]
+### ** View One **
+![img1](images/img1.png)
+### ** View Two **
+![img1](images/img3.png)
+### ** View 3 light mode **
+![img1](images/img4.png)
+### ** View 3 dark mode **
+![img1](images/img5.png)
+### ** View 3 dark mode **
+![img1](images/img6.png)
+### ** View 3 Small Screen **
+![img1](images/img7.png)
+### ** View 3 Small Screen **
+![img1](images/img8.png)
+### ** View 3 Small Screen **
+![img1](images/img9.png)
 ## Usage
 
 1. Clone the repository:
