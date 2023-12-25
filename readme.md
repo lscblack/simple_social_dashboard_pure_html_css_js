@@ -7,6 +7,9 @@ This single-page dashboard is a lightweight project showcasing a social dashboar
 [![img1](images/img4.png)]
 [![img1](images/img5.png)]
 [![img1](images/img6.png)]
+[![img1](images/img7.png)]
+[![img1](images/img8.png)]
+[![img1](images/img9.png)]
 ## Usage
 
 1. Clone the repository:
@@ -45,3 +48,6 @@ LSC_BLACK(Loue Sauveur Christian)
 ## License
 
 This repository is licensed under the **[MIT License](LICENSE)**.
+
+# Thank you
+    **Happy coding Enjoy **
