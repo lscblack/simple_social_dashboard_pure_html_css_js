@@ -1,6 +1,7 @@
 # Simple Social Dashboard
 
 This single-page dashboard is a lightweight project showcasing a social dashboard built purely with HTML, CSS, and JavaScript. It includes features like a profile section, menus, images, and tables, providing a glimpse into a social platform's functionality.
+Live Demo (https://lscblack.github.io/simple_social_dashboard_pure_html_css_js/)
 ## Screen Shots
 ### ** View One **
 ![img1](images/img1.png)
